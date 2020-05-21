@@ -96,30 +96,45 @@ public class Customer implements Observer, Serializable {
             if (this._advertEstate1 == null) {
                 this._advertEstate1 = _advert.getEstate();
                 System.out.println("\n");
-                System.out.println("Dear " + this.getName() + " " + this.getSurname());
-                System.out.println("There is a house which you can buy in " + _advertEstate1.getLocation().getCountry());
-                System.out.println("With the price of " + _advertEstate1.getPrice());
+                System.out.println("Dear " + main.getActiveUser().getName() + " " + main.getActiveUser().getSurname());
+                System.out.println("There is a house which you can buy in " + _advertEstate1.getLocation().getCountry()
+                        + "->" + _advertEstate1.getLocation().getRegion()
+                        + "->" + _advertEstate1.getLocation().getCity()
+                        + "->" + _advertEstate1.getLocation().getCounty()
+                        + "->" + _advertEstate1.getLocation().getNeighborhood()
+                );
+                System.out.println("With the price of " + _advertEstate1.getPrice() + "$");
 
             } else if (this._advertEstate2 == null) {
                 this._advertEstate2 = _advert.getEstate();
                 System.out.println("\n");
-                System.out.println("Dear " + this.getName() + " " + this.getSurname());
-                System.out.println("There is a house which you can buy in " + _advertEstate2.getLocation().getCountry());
-                System.out.println("With the price of " + _advertEstate2.getPrice());
+                System.out.println("Dear " + main.getActiveUser().getName() + " " + main.getActiveUser().getSurname());
+                System.out.println("There is a house which you can buy in " + _advertEstate1.getLocation().getCountry()
+                        + "->" + _advertEstate1.getLocation().getRegion()
+                        + "->" + _advertEstate1.getLocation().getCity()
+                        + "->" + _advertEstate1.getLocation().getCounty()
+                        + "->" + _advertEstate1.getLocation().getNeighborhood()
+                );
+                System.out.println("With the price of " + _advertEstate1.getPrice() + "$");
 
             } else if (this._advertEstate3 == null) {
                 this._advertEstate3 = _advert.getEstate();
                 System.out.println("\n");
-                System.out.println("Dear " + this.getName() + " " + this.getSurname());
-                System.out.println("There is a house which you can buy in " + _advertEstate3.getLocation().getCountry());
-                System.out.println("With the price of " + _advertEstate3.getPrice());
+                System.out.println("Dear " + main.getActiveUser().getName() + " " + main.getActiveUser().getSurname());
+                System.out.println("There is a house which you can buy in " + _advertEstate1.getLocation().getCountry()
+                        + "->" + _advertEstate1.getLocation().getRegion()
+                        + "->" + _advertEstate1.getLocation().getCity()
+                        + "->" + _advertEstate1.getLocation().getCounty()
+                        + "->" + _advertEstate1.getLocation().getNeighborhood()
+                );
+                System.out.println("With the price of " + _advertEstate1.getPrice() + "$");
 
             }
         } else if (_advert.getClass().equals(_landAdvert.getClass())) {
             if (this._advertEstate1 == null) {
                 this._advertEstate1 = _advert.getEstate();
                 System.out.println("\n");
-                System.out.println("Dear " + this.getName() + " " + this.getSurname());
+                System.out.println("Dear " + main.getActiveUser().getName() + " " + main.getActiveUser().getSurname());
                 System.out.println("There is a land which you can buy in " + _advertEstate1.getLocation().getCountry()
                         + "->" + _advertEstate1.getLocation().getRegion()
                         + "->" + _advertEstate1.getLocation().getCity()
@@ -131,43 +146,65 @@ public class Customer implements Observer, Serializable {
             } else if (this._advertEstate2 == null) {
                 this._advertEstate2 = _advert.getEstate();
                 System.out.println("\n");
-                System.out.println("Dear " + this.getName() + " " + this.getSurname());
-                System.out.println("There is a land which you can buy in " + _advertEstate2.getLocation().getCountry());
-                System.out.println("With the price of " + _advertEstate2.getPrice());
-
+                System.out.println("Dear " + main.getActiveUser().getName() + " " + main.getActiveUser().getSurname());
+                System.out.println("There is a land which you can buy in " + _advertEstate1.getLocation().getCountry()
+                        + "->" + _advertEstate1.getLocation().getRegion()
+                        + "->" + _advertEstate1.getLocation().getCity()
+                        + "->" + _advertEstate1.getLocation().getCounty()
+                        + "->" + _advertEstate1.getLocation().getNeighborhood()
+                );
+                System.out.println("With the price of " + _advertEstate1.getPrice() + "$");
             } else if (this._advertEstate3 == null) {
                 this._advertEstate3 = _advert.getEstate();
                 System.out.println("\n");
-                System.out.println("Dear " + this.getName() + " " + this.getSurname());
-                System.out.println("There is a land which you can buy in " + _advertEstate3.getLocation().getCountry());
-                System.out.println("With the price of " + _advertEstate3.getPrice());
+                System.out.println("Dear " + main.getActiveUser().getName() + " " + main.getActiveUser().getSurname());
+                System.out.println("There is a land which you can buy in " + _advertEstate1.getLocation().getCountry()
+                        + "->" + _advertEstate1.getLocation().getRegion()
+                        + "->" + _advertEstate1.getLocation().getCity()
+                        + "->" + _advertEstate1.getLocation().getCounty()
+                        + "->" + _advertEstate1.getLocation().getNeighborhood()
+                );
+                System.out.println("With the price of " + _advertEstate1.getPrice() + "$");
 
             }
         } else if (_advert.getClass().equals(_storeAdvert.getClass())) {
             if (this._advertEstate1 == null) {
                 this._advertEstate1 = _advert.getEstate();
                 System.out.println("\n");
-                System.out.println("Dear " + this.getName() + " " + this.getSurname());
-                System.out.println("There is a store which you can buy in " + _advertEstate1.getLocation().getCountry());
-                System.out.println("With the price of " + _advertEstate1.getPrice());
+                System.out.println("Dear " + main.getActiveUser().getName() + " " + main.getActiveUser().getSurname());
+                System.out.println("There is a store which you can buy in " + _advertEstate1.getLocation().getCountry()
+                        + "->" + _advertEstate1.getLocation().getRegion()
+                        + "->" + _advertEstate1.getLocation().getCity()
+                        + "->" + _advertEstate1.getLocation().getCounty()
+                        + "->" + _advertEstate1.getLocation().getNeighborhood()
+                );
+                System.out.println("With the price of " + _advertEstate1.getPrice() + "$");
 
             } else if (this._advertEstate2 == null) {
                 this._advertEstate2 = _advert.getEstate();
                 System.out.println("\n");
-                System.out.println("Dear " + this.getName() + " " + this.getSurname());
-                System.out.println("There is a store which you can buy in " + _advertEstate2.getLocation().getCountry());
-                System.out.println("With the price of " + _advertEstate2.getPrice());
+                System.out.println("Dear " + main.getActiveUser().getName() + " " + main.getActiveUser().getSurname());
+                System.out.println("There is a store which you can buy in " + _advertEstate1.getLocation().getCountry()
+                        + "->" + _advertEstate1.getLocation().getRegion()
+                        + "->" + _advertEstate1.getLocation().getCity()
+                        + "->" + _advertEstate1.getLocation().getCounty()
+                        + "->" + _advertEstate1.getLocation().getNeighborhood()
+                );
+                System.out.println("With the price of " + _advertEstate1.getPrice() + "$");
 
             } else if (this._advertEstate3 == null) {
                 this._advertEstate3 = _advert.getEstate();
                 System.out.println("\n");
-                System.out.println("Dear " + this.getName() + " " + this.getSurname());
-                System.out.println("There is a store which you can buy in " + _advertEstate3.getLocation().getCountry());
-                System.out.println("With the price of " + _advertEstate3.getPrice());
+                System.out.println("Dear " + main.getActiveUser().getName() + " " + main.getActiveUser().getSurname());
+                System.out.println("There is a store which you can buy in " + _advertEstate1.getLocation().getCountry()
+                        + "->" + _advertEstate1.getLocation().getRegion()
+                        + "->" + _advertEstate1.getLocation().getCity()
+                        + "->" + _advertEstate1.getLocation().getCounty()
+                        + "->" + _advertEstate1.getLocation().getNeighborhood()
+                );
+                System.out.println("With the price of " + _advertEstate1.getPrice() + "$");
 
             }
-
         }
-
     }
 }
