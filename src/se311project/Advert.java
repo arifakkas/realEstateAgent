@@ -64,7 +64,9 @@ abstract class Advert implements Serializable {
             Customer tempCustomer = (Customer) parser.next();
             if (tempCustomer.getPreference1() != null) {
                 if (tempCustomer.getPreference1().getLocation().getCountry().equals(estate.getLocation().getCountry())
-                        && tempCustomer.getPreference1().getLocation().getNeighborhood().equals(estate.getLocation().getNeighborhood())
+                        && tempCustomer.getPreference1().getLocation().getRegion().equals(estate.getLocation().getRegion())
+                        && tempCustomer.getPreference1().getLocation().getCity().equals(estate.getLocation().getCity())
+                        && tempCustomer.getPreference1().getLocation().getCounty().equals(estate.getLocation().getCounty())
                         && tempCustomer.getPreference1().getLocation().getNeighborhood().equals(estate.getLocation().getNeighborhood())
                         && (tempCustomer.getPreference1().getPrice() - 50000 <= estate.getPrice()
                         && estate.getPrice() <= tempCustomer.getPreference1().getPrice() + 50000)
@@ -77,6 +79,9 @@ abstract class Advert implements Serializable {
             }
             if (tempCustomer.getPreference2() != null) {
                 if (tempCustomer.getPreference2().getLocation().getCountry().equals(estate.getLocation().getCountry())
+                        && tempCustomer.getPreference2().getLocation().getRegion().equals(estate.getLocation().getRegion())
+                        && tempCustomer.getPreference2().getLocation().getCity().equals(estate.getLocation().getCity())
+                        && tempCustomer.getPreference2().getLocation().getCounty().equals(estate.getLocation().getCounty())
                         && tempCustomer.getPreference2().getLocation().getNeighborhood().equals(estate.getLocation().getNeighborhood())
                         && (tempCustomer.getPreference2().getPrice() - 50000 <= estate.getPrice()
                         || estate.getPrice() <= tempCustomer.getPreference2().getPrice() + 50000)
@@ -88,6 +93,9 @@ abstract class Advert implements Serializable {
             }
             if (tempCustomer.getPreference3() != null) {
                 if (tempCustomer.getPreference3().getLocation().getCountry().equals(estate.getLocation().getCountry())
+                        && tempCustomer.getPreference3().getLocation().getRegion().equals(estate.getLocation().getRegion())
+                        && tempCustomer.getPreference3().getLocation().getCity().equals(estate.getLocation().getCity())
+                        && tempCustomer.getPreference3().getLocation().getCounty().equals(estate.getLocation().getCounty())
                         && tempCustomer.getPreference3().getLocation().getNeighborhood().equals(estate.getLocation().getNeighborhood())
                         && (tempCustomer.getPreference3().getPrice() - 50000.0 <= estate.getPrice()
                         && estate.getPrice() <= tempCustomer.getPreference3().getPrice() + 50000.0)
