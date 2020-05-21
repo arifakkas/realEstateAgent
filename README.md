@@ -37,4 +37,4 @@ Patterns used on this project:
 
 -> Iterator pattern to parse arraylists of customers and estates
 
--> Facade Pattern to improve visuality on main class
+-> Command pattern to combine and to decrease coupling
