@@ -692,7 +692,7 @@ public class main {
         System.out.println("There is/are " + agent.getListOfCustomers().size() + " customers on the system.");
         System.out.println("There is/are " + agent.getListOfEstates().size() + " estates on the system.");
 
-        mainMenu();//Facade
+        mainMenu();//Start
 
     }
 
