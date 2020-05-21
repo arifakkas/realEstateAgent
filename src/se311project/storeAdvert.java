@@ -4,24 +4,27 @@ import java.io.Serializable;
 import java.util.Iterator;
 import java.util.Objects;
 
-public class storeAdvert extends Advert implements Serializable{
-    
+// One of the concrete subjects of the Observer pattern
+public class storeAdvert extends Advert implements Serializable {
+
     private static storeAdvert _storeAdvert;
-    private storeAdvert(){}
-    
+
+    private storeAdvert() {
+    }
+
     public static storeAdvert getStoreAdverter() {
 
         if (_storeAdvert == null) {
 
-           _storeAdvert = new storeAdvert();
+            _storeAdvert = new storeAdvert();
 
         }
         return _storeAdvert;
     }
 
     protected Estate _estate;
-    
-    public void setEstate(Estate estate){
+
+    public void setEstate(Estate estate) {
         this._estate = estate;
     }
 
@@ -30,7 +33,6 @@ public class storeAdvert extends Advert implements Serializable{
         while (parser.hasNext()) {
 
             Customer tempCustomer = (Customer) parser.next();
-           
 
             if (tempCustomer.getPreference1() != null) {
                 if (tempCustomer.getPreference1().getLocation().getCountry().equals(estate.getLocation().getCountry())
@@ -61,6 +63,5 @@ public class storeAdvert extends Advert implements Serializable{
                 }
             }
         }
-
     }
 }

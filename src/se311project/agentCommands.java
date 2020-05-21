@@ -3,6 +3,8 @@ package se311project;
 import java.io.IOException;
 import java.time.LocalDate;
 
+// One of the concrete command classes of the Command pattern
+// It is usually related with the estates
 public class agentCommands implements Command {
 
     private Agent _agent;
@@ -29,7 +31,7 @@ public class agentCommands implements Command {
     }
 
     @Override
-    public void executeCommand() throws IOException, ClassNotFoundException{
+    public void executeCommand() throws IOException, ClassNotFoundException {
         _agent.EstateOperations(_operation, _estateType, _location, _forSale, _forRent, _price, _date);
     }
 

@@ -2,37 +2,37 @@ package se311project;
 
 import java.io.Serializable;
 import java.util.Iterator;
-import java.util.Map;
 import java.util.Objects;
 
-public class landAdvert extends Advert implements Serializable{
-    
+// One of the concrete subjects of the Observer pattern
+public class landAdvert extends Advert implements Serializable {
+
     private static landAdvert _landAdvert;
-    private landAdvert(){}
-    
+
+    private landAdvert() {
+    }
+
     public static landAdvert getLandAdverter() {
 
         if (_landAdvert == null) {
 
-           _landAdvert = new landAdvert();
+            _landAdvert = new landAdvert();
 
         }
         return _landAdvert;
     }
 
     protected Estate _estate;
-    
-    public void setEstate(Estate estate){
+
+    public void setEstate(Estate estate) {
         this._estate = estate;
     }
 
     public void advert(Estate estate) {
         Iterator parser = _waitingCustomers.iterator();
         while (parser.hasNext()) {
-            
 
             Customer tempCustomer = (Customer) parser.next();
-           
 
             if (tempCustomer.getPreference1() != null) {
                 if (tempCustomer.getPreference1().getLocation().getCountry().equals(estate.getLocation().getCountry())
@@ -63,6 +63,5 @@ public class landAdvert extends Advert implements Serializable{
                 }
             }
         }
-
     }
 }

@@ -2,7 +2,9 @@ package se311project;
 
 import java.time.LocalDate;
 
+// HouseCreator is a concrete creator
 class HouseCreator extends EstateCreator {
+
     private static Location _location;
     private static Boolean _forSale;
     private static Boolean _forRent;
@@ -25,9 +27,10 @@ class HouseCreator extends EstateCreator {
     }
 
 }
+// LandCreator is a concrete creator
 
 class LandCreator extends EstateCreator {
-    
+
     private static Location _location;
     private static Boolean _forSale;
     private static Boolean _forRent;
@@ -49,9 +52,10 @@ class LandCreator extends EstateCreator {
         return new Land(_location, _forSale, _forRent, _price, _date);
     }
 }
+// StoreCreator is a concrete creator
 
 class StoreCreator extends EstateCreator {
-    
+
     private static Location _location;
     private static Boolean _forSale;
     private static Boolean _forRent;
@@ -73,11 +77,14 @@ class StoreCreator extends EstateCreator {
         return new Store(_location, _forSale, _forRent, _price, _date);
     }
 }
+// Abstract creator
 
-public  abstract class EstateCreator {
+public abstract class EstateCreator {
 
-    static Estate tempEstate=null;
+    static Estate tempEstate = null;
 
+    // Only one create method, it chooses the type of the estate from parameter
+    // and with a given type factory method called.
     public static Estate createEstate(int estateType, Location location,
             Boolean forSale, Boolean forRent, Long price, LocalDate date) {
         if (estateType == 0) {
@@ -90,7 +97,7 @@ public  abstract class EstateCreator {
             return tempEstate;
         } else if (estateType == 2) {
             StoreCreator storeCreator = new StoreCreator(location, forSale, forRent, price, date);
-            tempEstate = storeCreator.createStore( location, forSale, forRent, price, date);
+            tempEstate = storeCreator.createStore(location, forSale, forRent, price, date);
             return tempEstate;
         }
         return null;

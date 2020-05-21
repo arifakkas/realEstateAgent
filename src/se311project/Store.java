@@ -1,6 +1,7 @@
 package se311project;
 
 import java.time.LocalDate;
+// Store is a concrete child of the Estate
 
 public class Store extends Estate {
 
@@ -68,6 +69,5 @@ public class Store extends Estate {
     public void setDate(LocalDate _date) {
         this._date = _date;
     }
-
 
 }
