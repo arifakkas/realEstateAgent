@@ -1,17 +1,19 @@
 package se311project;
 
 import java.io.Serializable;
+// To be able to save the locations of the estates
+// this class has been created and it holds the location.
 
-public class Location implements Serializable{
-    
+public class Location implements Serializable {
+
     private String _country;
     private String _region;
     private String _city;
     private String _county;
     private String _neighborhood;
-    
+
     public Location(String country, String region, String city,
-            String county, String neighborhood){
+            String county, String neighborhood) {
         this._country = country;
         this._region = region;
         this._city = city;
@@ -58,7 +60,5 @@ public class Location implements Serializable{
     public void setNeighborhood(String _neighborhood) {
         this._neighborhood = _neighborhood;
     }
-    
-    
-    
+
 }

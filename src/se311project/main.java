@@ -1,17 +1,19 @@
 package se311project;
 
+import java.io.Console;
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.regex.*;
-import java.time.Month;
-import static java.time.temporal.ChronoUnit.*;
-import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.Objects;
 import java.util.Scanner;
 
+// This is the client class
+// Facade pattern is used to provide simple interface
+// From one method, all the methods can be called
+// We tried to handle all the exceptions related with the attribute types
+// all the methods in this class does exactly the name of its own
 public class main {
 
+    // Whenever customer needed, this customer will be used
     private static Customer _activeCustomer;
 
     public static void activateUser(Customer customer) {
@@ -26,6 +28,7 @@ public class main {
         _activeCustomer = null;
     }
 
+    // main menu
     public static void mainMenu() throws ClassNotFoundException, IOException {
 
         Scanner input = new Scanner(System.in);
@@ -53,12 +56,13 @@ public class main {
             if (i == 1) {
                 customerEntry();
             } else if (i == 2) {
-                //agentMenu();
+                agentSignIn();
             } else if (i == 3) {
                 System.out.println("Thank you, until next time");
                 System.exit(1);
             } else {
-                mainMenu();
+                System.out.println("\n");
+                System.out.println("Please select appropriate choice");
             }
         }
 
@@ -94,8 +98,10 @@ public class main {
             } else if (i == 3) {
                 mainMenu();
             } else if (i == 4) {
+                System.out.println("Until Next Time.");
                 System.exit(1);
             } else {
+                System.out.println("Please select appropriate choice");
                 customerEntry();
             }
 
@@ -112,10 +118,9 @@ public class main {
         System.out.println("Please give your surname");
         System.out.println("\n");
         String surname = input.nextLine();
-        Agent agent = Agent.getSingletonAgent();
         Boolean flag = false;
 
-        Iterator parser = agent.getListOfCustomers().iterator();
+        Iterator parser = Agent.getSingletonAgent().getListOfCustomers().iterator();
         while (parser.hasNext()) {
             Customer temp = (Customer) parser.next();
             if (temp.getName().equals(name) && temp.getSurname().equals(surname)) {
@@ -167,10 +172,9 @@ public class main {
             }
         }
 
-        Agent agent = Agent.getSingletonAgent();
         try {
             Command command = new customerCommands(0, name, surname, iNumber);
-            agent.executeCommand(command);
+            Agent.getSingletonAgent().executeCommand(command);
             System.out.println("\n");
             System.out.println("You have succesfully signed up\t" + name + " " + surname);
 
@@ -196,7 +200,7 @@ public class main {
             System.out.println("3 -> See Your Preferences");
             System.out.println("4 -> Delete Your Preferences");
             System.out.println("5 -> Check estates matches with your preferences");
-            System.out.println("6 -> Check all the estates");
+            System.out.println("6 -> Check all the estates with a type");
             System.out.println("7 -> Exit");
             System.out.println("******************************************");
             System.out.println("\n");
@@ -218,17 +222,19 @@ public class main {
                 deletePreferences();
             } else if (i == 5) {
                 advertAll();
-            }else if(i == 6){
-                //Display all estates with a given type, will implemented
-            }
-            else if (i == 7) {
+            } else if (i == 6) {
+                showAllEstates();
+            } else if (i == 7) {
                 System.out.println("Thank you, until next time");
                 System.exit(1);
+            } else {
+                System.out.println("Please select appropriate choice");
             }
 
         }
     }
 
+    // This method is using to create Estate, create preference and delete estate
     public static void createEstate(int operation) throws IOException, ClassNotFoundException {
 
         Scanner input = new Scanner(System.in);
@@ -264,7 +270,7 @@ public class main {
                 if (location == null) {
                     System.out.println("Some problem occured");
                 } else {
-                    System.out.println("Location succesfully created");
+
                     System.out.println("is it avaliable for Sale?  Y/N");
                     Boolean status = true;
                     Boolean fSale = null;
@@ -298,6 +304,12 @@ public class main {
                             System.out.println("Please select appropriate choice");
                         }
                     }
+                    if (operation == 3) {//delete
+                        Command command = new agentCommands(1, 0, location, fSale, fRent, Long.MIN_VALUE, LocalDate.MIN);
+                        Agent.getSingletonAgent().executeCommand(command);
+                        agentMenu();
+                    }
+
                     status = true;
                     String price = null;
                     Long p = 0L;
@@ -316,13 +328,13 @@ public class main {
                     LocalDate date = LocalDate.now();
                     if (operation == 1) {//create
                         Command command = new agentCommands(0, 0, location, fSale, fRent, p, date);
-                        getActiveUser().getAdapter().execute(command);
+                        Agent.getSingletonAgent().executeCommand(command);
                         System.out.println("Agent succesfully take the informations about the estate");
                         System.out.println("\n");
                         break;
-                    } else {
+                    } else if (operation == 2) {//preference
                         Command command = new agentCommands(5, 0, location, fSale, fRent, p, date);
-                        getActiveUser().getAdapter().execute(command);
+                        Agent.getSingletonAgent().executeCommand(command);
                         System.out.println("Your preference has succesfully saved");
                         System.out.println("\n");
                         break;
@@ -380,6 +392,12 @@ public class main {
                             System.out.println("Please select appropriate choice");
                         }
                     }
+
+                    if (operation == 3) {//delete
+                        Command command = new agentCommands(1, 1, location, fSale, fRent, Long.MIN_VALUE, LocalDate.MIN);
+                        Agent.getSingletonAgent().executeCommand(command);
+                        agentMenu();
+                    }
                     status = true;
                     String price = null;
                     Long p = 0L;
@@ -399,13 +417,13 @@ public class main {
 
                     if (operation == 1) {//create
                         Command command = new agentCommands(0, 1, location, fSale, fRent, p, date);
-                        getActiveUser().getAdapter().execute(command);
+                        Agent.getSingletonAgent().executeCommand(command);
                         System.out.println("Agent succesfully take the informations about the estate");
                         System.out.println("\n");
                         break;
                     } else {
                         Command command = new agentCommands(5, 1, location, fSale, fRent, p, date);
-                        getActiveUser().getAdapter().execute(command);
+                        Agent.getSingletonAgent().executeCommand(command);
                         System.out.println("Your preference has succesfully saved");
                         System.out.println("\n");
                         break;
@@ -462,6 +480,12 @@ public class main {
                             System.out.println("Please select appropriate choice");
                         }
                     }
+
+                    if (operation == 3) {//delete
+                        Command command = new agentCommands(1, 0, location, fSale, fRent, Long.MIN_VALUE, LocalDate.MIN);
+                        Agent.getSingletonAgent().executeCommand(command);
+                        agentMenu();
+                    }
                     status = true;
                     String price = null;
                     Long p = 0L;
@@ -481,13 +505,13 @@ public class main {
 
                     if (operation == 1) {//create
                         Command command = new agentCommands(0, 2, location, fSale, fRent, p, date);
-                        getActiveUser().getAdapter().execute(command);
+                        Agent.getSingletonAgent().executeCommand(command);
                         System.out.println("Agent succesfully take the informations about the estate");
                         System.out.println("\n");
                         break;
                     } else {
                         Command command = new agentCommands(5, 2, location, fSale, fRent, p, date);
-                        getActiveUser().getAdapter().execute(command);
+                        Agent.getSingletonAgent().executeCommand(command);
                         System.out.println("Your preference has succesfully saved");
                         System.out.println("\n");
                         break;
@@ -499,24 +523,165 @@ public class main {
 
     public static void displayPreferences() throws ClassNotFoundException, IOException {
         Command command = new customerCommands(2, getActiveUser().getName(), getActiveUser().getSurname(), getActiveUser().getIdentityNumber());
-        Agent agent = Agent.getSingletonAgent();
-        agent.executeCommand(command);
+        Agent.getSingletonAgent().executeCommand(command);
     }
 
     public static void deletePreferences() throws ClassNotFoundException, IOException {
         Command command = new customerCommands(3, getActiveUser().getName(), getActiveUser().getSurname(), getActiveUser().getIdentityNumber());
-        Agent agent = Agent.getSingletonAgent();
-        agent.executeCommand(command);
-        return;
+        Agent.getSingletonAgent().executeCommand(command);
 
     }
 
     public static void advertAll() throws ClassNotFoundException, IOException {
         System.out.println("Program will print if there is an estate matches with your preferences");
-        Command command = new agentCommands(6, 1, null, Boolean.FALSE, Boolean.TRUE, Long.MIN_VALUE, LocalDate.MIN);
-        Agent agent = Agent.getSingletonAgent();
-        agent.executeCommand(command);
-        return;
+        System.out.println("\n");
+        Command command = new agentCommands(7, 0, null, Boolean.FALSE, Boolean.TRUE, Long.MIN_VALUE, LocalDate.MIN);
+        Agent.getSingletonAgent().executeCommand(command);
+    }
+
+    public static void showAllEstates() throws ClassNotFoundException, IOException {
+
+        Scanner input = new Scanner(System.in);
+
+        System.out.println("Please Select the Type of the Estate");
+        System.out.println("1 -> House");
+        System.out.println("2 -> Land");
+        System.out.println("3 -> Store");
+
+        String choice = input.nextLine();
+        int i;
+        try {
+            i = Integer.parseInt(choice);
+        } catch (Exception e) {
+            i = 0;
+            System.out.println("Please select appropiate choice");
+        }
+        Command command;
+        switch (i) {
+            case (1):
+                command = new agentCommands(6, 0, null, Boolean.FALSE, Boolean.TRUE, Long.MIN_VALUE, LocalDate.MIN);
+                Agent.getSingletonAgent().executeCommand(command);
+                break;
+            case (2):
+                command = new agentCommands(6, 1, null, Boolean.FALSE, Boolean.TRUE, Long.MIN_VALUE, LocalDate.MIN);
+                Agent.getSingletonAgent().executeCommand(command);
+                break;
+            case (3):
+                command = new agentCommands(6, 2, null, Boolean.FALSE, Boolean.TRUE, Long.MIN_VALUE, LocalDate.MIN);
+                Agent.getSingletonAgent().executeCommand(command);
+                break;
+            default:
+                System.out.println("Please select appropriate choice");
+        }
+
+    }
+
+    public static void agentSignIn() throws ClassNotFoundException, IOException {
+        Scanner input = new Scanner(System.in);
+        Console console = System.console();
+        String password;
+        String name;
+
+        // While running on the command line, passwords will be masked
+        if (console == null) {
+            System.out.println("\n");
+            System.err.println("No console detected.");
+            System.out.println("\n");
+            System.out.println("Please give agent name");
+            System.out.println("\n");
+            name = input.nextLine();
+            System.out.println("Enter Password");
+            System.out.println("\n");
+            password = input.nextLine();
+
+        } else {
+            System.out.println("\n");
+            System.out.println("Please give agent name");
+            System.out.println("\n");
+            name = input.nextLine();
+            System.out.println("Enter Password");
+            System.out.println("\n");
+            char[] pwd = console.readPassword();
+            password = new String(pwd);
+        }
+
+        if (Agent.getSingletonAgent().getName().equals(name) && Agent.getSingletonAgent().getPassword().equals(password)) {
+            System.out.println("Welcome Agent");
+            System.out.println("\n");
+            agentMenu();
+        } else {
+            System.out.println("There is an error!");
+        }
+
+    }
+
+    public static void agentMenu() throws IOException, ClassNotFoundException {
+
+        Boolean status = true;
+        while (status) {
+            System.out.println("\n");
+            System.out.println("Please Select the operation");
+            System.out.println("1 -> Delete User");
+            System.out.println("2 -> Delete Estate");
+            System.out.println("3 -> Delete Estates Older Than 6 Months");
+            System.out.println("4 -> Get The Total Inventory Count");
+            System.out.println("5 -> See all the Estates with the given type");
+            System.out.println("6 -> See all the Users");
+            System.out.println("7 -> Exit");
+
+            Scanner input = new Scanner(System.in);
+            String choice = input.nextLine();
+            int i;
+            try {
+                i = Integer.parseInt(choice);
+            } catch (Exception e) {
+                i = 0;
+                System.out.println("Please select appropiate choice");
+            }
+            if (i == 1) {
+                deleteUser();//delete user
+            } else if (i == 2) {
+                createEstate(3);//delete estate
+            } else if (i == 3) {//delete estates older than 6 months
+                deleteOldEstates();
+            } else if (i == 4) {// get total count
+                getTotalCount();
+            } else if (i == 5) {// show all estates with a type
+                showAllEstates();
+            } else if (i == 6) {// show all users
+                showAllUsers();
+            }
+        }
+    }
+
+    public static void deleteUser() throws ClassNotFoundException, IOException {
+        Scanner input = new Scanner(System.in);
+        System.out.println("\n");
+        System.out.println("Please give the name of the user");
+        System.out.println("\n");
+        String userName = input.nextLine();
+        System.out.println("\n");
+        System.out.println("Please give the surname of the user");
+        System.out.println("\n");
+        String userSurname = input.nextLine();
+
+        Command command = new customerCommands(1, userName, userSurname, Long.MIN_VALUE);
+        Agent.getSingletonAgent().executeCommand(command);
+    }
+
+    public static void deleteOldEstates() throws ClassNotFoundException, IOException {
+        Command command = new agentCommands(3, 0, null, Boolean.FALSE, Boolean.TRUE, Long.MIN_VALUE, LocalDate.MIN);
+        Agent.getSingletonAgent().executeCommand(command);
+    }
+
+    public static void getTotalCount() throws ClassNotFoundException, IOException {
+        Command command = new agentCommands(2, 0, null, Boolean.FALSE, Boolean.TRUE, Long.MIN_VALUE, LocalDate.MIN);
+        Agent.getSingletonAgent().executeCommand(command);
+    }
+
+    public static void showAllUsers() throws ClassNotFoundException, IOException {
+        Command command = new customerCommands(4, null, null, Long.MIN_VALUE);
+        Agent.getSingletonAgent().executeCommand(command);
     }
 
     public static void main(String args[]) throws IOException, ClassNotFoundException {
@@ -524,7 +689,7 @@ public class main {
         System.out.println("There is/are " + agent.getListOfCustomers().size() + " customers on the system.");
         System.out.println("There is/are " + agent.getListOfEstates().size() + " estates on the system.");
 
-        mainMenu();
+        mainMenu();//Facade
 
     }
 

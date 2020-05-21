@@ -2,8 +2,11 @@ package se311project;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+// Abstract Product class of the Factory pattern
+// For rent and for sale implemented seperately
+// Customer may want to rent or sale
 
-abstract class Estate implements Serializable{
+abstract class Estate implements Serializable {
 
     abstract public Location getLocation();
 
@@ -24,7 +27,5 @@ abstract class Estate implements Serializable{
     abstract public LocalDate getDate();
 
     abstract public void setDate(LocalDate _date);
-    
-    
 
 }

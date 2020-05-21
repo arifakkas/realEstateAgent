@@ -1,6 +1,7 @@
 package se311project;
 
 import java.time.LocalDate;
+// Land is a concrete child of the Estate
 
 public class Land extends Estate {
 

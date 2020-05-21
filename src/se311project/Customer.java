@@ -2,13 +2,15 @@ package se311project;
 
 import java.io.IOException;
 import java.io.Serializable;
-import java.time.LocalDate;
 
+// Customer is the object class of the user
+// It is also Concrete observer of the observer pattern
 public class Customer implements Observer, Serializable {
 
     private String _name;
     private String _surname;
     private Long _identityNumber;
+    // Customer can register 3 preferences at most
     private Estate _preference1;
     private Estate _preference2;
     private Estate _preference3;
@@ -19,13 +21,12 @@ public class Customer implements Observer, Serializable {
     private houseAdvert _houseAdvert;
     private landAdvert _landAdvert;
     private storeAdvert _storeAdvert;
-    agentAdapter _adapter;
 
+    // Regular constructor
     public Customer(String name, String surname, Long identityNumber) throws ClassNotFoundException, IOException {
         this._name = name;
         this._surname = surname;
         this._identityNumber = identityNumber;
-        this._adapter = agentAdapter.getAdapter();
         this._preference1 = null;
         this._preference2 = null;
         this._preference3 = null;
@@ -62,10 +63,6 @@ public class Customer implements Observer, Serializable {
         this._identityNumber = _identityNumber;
     }
 
-    public agentAdapter getAdapter() {
-        return this._adapter;
-    }
-
     public Estate getPreference1() {
         return this._preference1;
     }
@@ -90,6 +87,7 @@ public class Customer implements Observer, Serializable {
         this._preference3 = _preference3;
     }
 
+    // Update method of the Observer pattern
     public void Update(Advert advert) {
         _advert = advert;
 
@@ -122,8 +120,13 @@ public class Customer implements Observer, Serializable {
                 this._advertEstate1 = _advert.getEstate();
                 System.out.println("\n");
                 System.out.println("Dear " + this.getName() + " " + this.getSurname());
-                System.out.println("There is a land which you can buy in " + _advertEstate1.getLocation().getCountry());
-                System.out.println("With the price of " + _advertEstate1.getPrice());
+                System.out.println("There is a land which you can buy in " + _advertEstate1.getLocation().getCountry()
+                        + "->" + _advertEstate1.getLocation().getRegion()
+                        + "->" + _advertEstate1.getLocation().getCity()
+                        + "->" + _advertEstate1.getLocation().getCounty()
+                        + "->" + _advertEstate1.getLocation().getNeighborhood()
+                );
+                System.out.println("With the price of " + _advertEstate1.getPrice() + "$");
 
             } else if (this._advertEstate2 == null) {
                 this._advertEstate2 = _advert.getEstate();
