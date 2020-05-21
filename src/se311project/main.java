@@ -650,6 +650,9 @@ public class main {
                 showAllEstates();
             } else if (i == 6) {// show all users
                 showAllUsers();
+            }else if (i == 7){
+                System.out.println("Thank you, until next time");
+                System.exit(1);
             }
         }
     }
