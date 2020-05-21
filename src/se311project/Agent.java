@@ -10,6 +10,7 @@ import java.util.Iterator;
 import java.util.Objects;
 
 // Agent of the Agency. Handles all of the work
+// Facade of the facade pattern
 // It is also both invoker and receiver of the Command pattern
 // Serializable is implemented to write object
 // We think estate rent and estate sale implementations and keeping track of them
