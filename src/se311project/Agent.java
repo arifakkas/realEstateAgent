@@ -485,7 +485,7 @@ public class Agent implements Serializable {
                         System.out.println("Price = " + tempEstate.getPrice() + "$");
                         counter++;
                     }
-                } else if (estateType == 3) {
+                } else if (estateType == 2) {
                     if (tempEstate.getClass().equals(Store.class)) {
                         System.out.println("\n");
                         System.out.println("\t\tStore\t\t");
