@@ -37,4 +37,4 @@ Patterns used on this project:
 
 -> Iterator pattern to parse arraylists of customers and estates
 
--> Command pattern to combine and to decrease coupling
+-> Command pattern to increase cohesion and to decrease coupling
