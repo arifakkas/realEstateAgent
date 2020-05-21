@@ -21,7 +21,7 @@ class HouseCreator extends EstateCreator {
 
     }
 
-    public static House createHouse(Location location, Boolean forSale, Boolean forRent,
+    public static House createEstate(Location location, Boolean forSale, Boolean forRent,
             Long price, LocalDate date) {
         return new House(_location, _forSale, _forRent, _price, _date);
     }
@@ -47,7 +47,7 @@ class LandCreator extends EstateCreator {
 
     }
 
-    public static Land createLand(int estateType, Location location, Boolean forSale, Boolean forRent,
+    public static Land createEstate(int estateType, Location location, Boolean forSale, Boolean forRent,
             Long price, LocalDate date) {
         return new Land(_location, _forSale, _forRent, _price, _date);
     }
@@ -72,7 +72,7 @@ class StoreCreator extends EstateCreator {
 
     }
 
-    public static Store createStore(Location location, Boolean forSale, Boolean forRent,
+    public static Store createEstate(Location location, Boolean forSale, Boolean forRent,
             Long price, LocalDate date) {
         return new Store(_location, _forSale, _forRent, _price, _date);
     }
@@ -89,15 +89,15 @@ public abstract class EstateCreator {
             Boolean forSale, Boolean forRent, Long price, LocalDate date) {
         if (estateType == 0) {
             HouseCreator houseCreator = new HouseCreator(location, forSale, forRent, price, date);
-            tempEstate = houseCreator.createHouse(location, forSale, forRent, price, date);
+            tempEstate = houseCreator.createEstate(location, forSale, forRent, price, date);
             return tempEstate;
         } else if (estateType == 1) {
             LandCreator landCreator = new LandCreator(location, forSale, forRent, price, date);
-            tempEstate = landCreator.createLand(estateType, location, forSale, forRent, price, date);
+            tempEstate = landCreator.createEstate(estateType, location, forSale, forRent, price, date);
             return tempEstate;
         } else if (estateType == 2) {
             StoreCreator storeCreator = new StoreCreator(location, forSale, forRent, price, date);
-            tempEstate = storeCreator.createStore(location, forSale, forRent, price, date);
+            tempEstate = storeCreator.createEstate(location, forSale, forRent, price, date);
             return tempEstate;
         }
         return null;
