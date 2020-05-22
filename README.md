@@ -38,3 +38,14 @@ Patterns used on this project:
 -> Iterator pattern to parse arraylists of customers and estates
 
 -> Command pattern to increase cohesion and to decrease coupling
+
+
+Team members = 
+              
+              Arif Akkaş
+              
+              Onat Benli
+              
+              Orhan Eryiğit
+              
+              Yosun Topal
