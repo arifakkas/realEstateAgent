@@ -7,6 +7,11 @@ import java.util.Iterator;
 import java.util.Objects;
 //This class is the Subject class of the Observer pattern
 // Serializable is used to write objects
+// Team members:
+//                  Arif Akkaş
+//                  Onat Benli
+//                  Orhan Eryiğit
+//                  Yosun Topal
 
 abstract class Advert implements Serializable {
 
